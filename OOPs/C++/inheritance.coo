@@ -1,0 +1,101 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class Vehicle
+{
+    protected:
+    string name ;
+    string model;
+    int noOfTyres;
+
+    public:
+    string getName()
+    {
+        return this->name;
+    }
+    void setName( string name )
+    {
+        this->name = name;
+    }
+    void start_Engine()
+    {
+        cout<<"Engine is Starting "<< name <<" "<< model << endl;
+    }
+    void stop_Engine()
+    {
+        cout<<"Engine is stoping "<< name <<" "<< model << endl;
+    }
+    Vehicle( string name , string model , int noOfTyres )
+    {
+        this->model = model;
+        this->name = name;
+        this->noOfTyres = noOfTyres;
+        cout<<"Parameterised Constructor is called of vehicle "<< name << " "<< model << endl;
+    }
+    ~Vehicle( )
+    {
+        cout<<"Vehicle destructor is called for "<< name <<" "<< model << endl;
+    }
+};
+class Car : public Vehicle
+{
+    protected:
+    int noOfDoors;
+    string transmissionType;
+
+    public:
+    void startAC()
+    {
+        cout<< "AC is started of "<< name << " "<< model << endl;
+    }
+    Car(  string name , string model , int noOfTyres  , int noOfDoors , string transmissionType ) : Vehicle( name , model , noOfTyres )
+    {
+        this->transmissionType = transmissionType;
+        this->noOfDoors = noOfDoors;
+        cout<<"Parameterised Constructor is called of car "<< name << " "<< model << endl;
+
+    }
+    ~Car()
+    {
+        cout<<"Car destructor is called for "<< name << " "<< model << endl;
+    }
+};
+class MotorCycle : public Vehicle
+{
+    protected:
+    string handleBarStyle;
+    string suspensionType;
+
+    public:
+    void wheelie()
+    {
+        cout<<"Bike is doing wheelie "<< name << " "<< model << endl;
+
+    }
+    
+    MotorCycle( string name , string model , int noOfTyres , string handleBarStyle, string suspensionType  ): Vehicle( name, model , noOfTyres )
+    {
+        this->handleBarStyle = handleBarStyle ;
+        this->suspensionType = suspensionType;
+    }
+    ~MotorCycle()
+    {
+        cout<<"Motor Cycle destructor is called for "<< name << " "<< model << endl;
+    }
+
+};
+
+int main()
+{   
+    Car A( "Maruti" , "LXI" , 4 , 4 , "Mannual" );
+    A.start_Engine();
+    A.startAC();
+    A.stop_Engine();
+
+    MotorCycle M( "BMW" , "VXI" , 2 , "U" , "Hard");
+    M.start_Engine();
+    M.wheelie();
+    M.stop_Engine();
+    
+    return 0;
+}
